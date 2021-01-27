@@ -1,1 +1,3 @@
 rootProject.name = 'bank-service'
+
+include 'exchange-rate-service'

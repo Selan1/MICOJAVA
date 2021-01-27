@@ -1,45 +1,5 @@
-plugins {
-    id 'org.springframework.boot' version '2.3.1.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-    id 'java'
-    id 'application'
-}
-
-group = 'io.github'
-version = '0.1.0'
-sourceCompatibility = '1.8'
-mainClassName = 'io.github.bank.BankServiceApplication'
-
-repositories {
-    mavenCentral()
-}
-
-//todo remove starters
-dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-web")
-//    implementation("org.springframework.boot:spring-boot-starter-jpa")
-    implementation('org.springframework.boot:spring-boot-starter-validation')
-    implementation("org.springframework.cloud:spring-cloud-starter-openfeign:2.+")
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
-
-    compileOnly 'org.projectlombok:lombok:1.18.12'
-    annotationProcessor 'org.projectlombok:lombok:1.18.12'
-
-    testCompileOnly 'org.projectlombok:lombok:1.18.12'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
-
-    implementation group: 'javax.validation', name: 'validation-api', version: '2.0.0.Final'
-
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-//    implementation("org.springframework.boot:spring-boot-starter-log4j2")
-
-    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml"
-    implementation "io.micrometer:micrometer-registry-prometheus"
-
-    compileOnly 'org.springframework.boot:spring-boot-configuration-processor'
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-}
-
-test {
-    useJUnitPlatform()
+subprojects {
+    repositories {
+        mavenCentral()
+    }
 }
