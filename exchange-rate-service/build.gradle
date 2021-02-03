@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'io.github'
-version = '0.1.0'
+version = 'master'
 sourceCompatibility = '1.8'
 mainClassName = 'io.github.bank.BankServiceApplication'
 
