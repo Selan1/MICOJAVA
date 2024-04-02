@@ -1,3 +1,5 @@
 rootProject.name = 'bank-service'
 
-include 'exchange-rate-service'
+include 'exchange-service'
+include 'exchange-rate-adapter'
+include 'exchange-lib'
