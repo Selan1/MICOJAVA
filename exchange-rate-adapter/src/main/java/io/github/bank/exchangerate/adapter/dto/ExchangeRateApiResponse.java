@@ -35,10 +35,10 @@ public class ExchangeRateApiResponse {
     private String targetCode;
 
     @JsonProperty("conversion_rate")
-    private String conversationRate;
+    private Double conversationRate;
 
     @JsonProperty("conversion_result")
-    private String conversationResult;
+    private Double conversationResult;
 
     @JsonProperty("conversion_rates")
     private Map<String, Double> rates;

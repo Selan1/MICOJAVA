@@ -11,6 +11,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,10 +37,40 @@ public class ExchangeRateAdapterService {
     }
 
     public List<ExchangeRates> getHistoricalRates(String baseCurrency, LocalDate dateFrom, LocalDate dateTo) {
-        return null;
+        if (dateFrom.isAfter(dateTo)) return List.of();
+
+        var exchangeRates = new ArrayList<ExchangeRates>();
+        while (dateFrom.isBefore(dateTo) || dateFrom.isEqual(dateTo)) {
+
+            var historyDailyRate = client.getHistoricalRates(apiKey, baseCurrency,
+                    String.valueOf(dateFrom.getYear()),
+                    String.valueOf(dateFrom.getMonthValue()),
+                    String.valueOf(dateFrom.getDayOfMonth()));
+
+            var actualizationDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(historyDailyRate.getLastUpdatedUnix()), ZoneId.of("UTC"));
+
+            exchangeRates.add(ExchangeRates.builder()
+                    .baseCurrency(historyDailyRate.getBaseCode())
+                    .rateDate(actualizationDateTime.toLocalDate())
+                    .exchangeRates(historyDailyRate.getRates())
+                    .build());
+
+            dateFrom = dateFrom.plusDays(1);
+        }
+
+        return exchangeRates;
     }
 
     public ConversionResult convertRates(String fromCurrency, String toCurrency, Double amount) {
-        return null;
+        var conversionResult = client.convert(apiKey, fromCurrency, toCurrency, amount);
+
+        return ConversionResult.builder()
+                .fromCurrency(conversionResult.getBaseCode())
+                .toCurrency(conversionResult.getTargetCode())
+                .conversionRate(conversionResult.getConversationRate())
+                .operationDate(LocalDateTime.now())
+                .initialAmount(amount)
+                .totalResult(conversionResult.getConversationResult())
+                .build();
     }
 }
