@@ -30,11 +30,11 @@ dependencies {
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 
-    compileOnly 'org.projectlombok:lombok:1.18.12'
-    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+    compileOnly 'org.projectlombok:lombok:1.18.28'
+    annotationProcessor 'org.projectlombok:lombok:1.18.28'
 
-    testCompileOnly 'org.projectlombok:lombok:1.18.12'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+    testCompileOnly 'org.projectlombok:lombok:1.18.28'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
 
     implementation group: 'javax.validation', name: 'validation-api', version: '2.0.0.Final'
     implementation 'org.zalando:logbook-spring-boot-starter:3.7.2'
